@@ -170,7 +170,7 @@
 
 ## Use this theme
 
-#### 1. Updated Tailwind config
+#### 1. Update Tailwind config
 
 ```js
 const defaultTheme = require('tailwindcss/defaultTheme')
@@ -218,7 +218,7 @@ module.exports = {
     boxShadow: ['responsive', 'hover', 'focus', 'active'],
     gradientColorStops: ['responsive', 'hover', 'focus', 'active'],
   },
-  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/ui')],
+  plugins: [require('@tailwindcss/ui')],
   purge: {
     enabled: process.env.NODE_ENV === 'production',
     content: [
@@ -227,27 +227,6 @@ module.exports = {
       'pages/**/*.vue',
       'plugins/**/*.js',
       'nuxt.config.js',
-    ],
-    whitelist: [
-      'pre',
-      'code',
-      'prism',
-      'line-numbers',
-      'tag',
-      'toolbar-item',
-      'toolbar',
-      'code-toolbar',
-      'span',
-      'button',
-      'line-numbers-rows',
-      'url-link',
-      'attr-name',
-      'attr-value',
-      'punctuation',
-      'keyword',
-      'keyword-let',
-      'operator',
-      'string',
     ],
   },
   experimental: {
