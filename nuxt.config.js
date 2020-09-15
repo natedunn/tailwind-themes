@@ -1,3 +1,5 @@
+import configManifests from './configs'
+
 export default {
   /*
    ** Nuxt rendering mode
@@ -34,7 +36,11 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: [
+    {
+      src: '~/plugins/prism',
+    },
+  ],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -47,7 +53,7 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
-    '@nuxtjs/tailwindcss',
+    // '@nuxtjs/tailwindcss',
   ],
   /*
    ** Nuxt.js modules
@@ -68,10 +74,42 @@ export default {
    ** Content module configuration
    ** See https://content.nuxtjs.org/configuration
    */
-  content: {},
+  content: {
+    liveEdit: false,
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
-  build: {},
+  build: {
+    extractCSS: true,
+    extend(config, { isDev, isClient, isServer, loaders }) {
+      const theme = process.argv.includes('--theme')
+        ? process.argv[process.argv.indexOf('--theme') + 1]
+        : false
+
+      configManifests.forEach((configManifest) => {
+        if (theme === configManifest.name || !theme) {
+          config.module.rules.push({
+            test: `${__dirname}/${configManifest.css}`,
+            use: {
+              loader: 'postcss-loader',
+              options: {
+                plugins: () => [
+                  require('tailwindcss')(`./${configManifest.tailwindConfig}`),
+                  require('autoprefixer'),
+                ],
+              },
+            },
+          })
+        }
+      })
+    },
+  },
+  // postcss: {
+  //   plugins: {
+  //     tailwindcss: {},
+  //     autoprefixer: {},
+  //   },
+  // },
 }

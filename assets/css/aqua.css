@@ -1,0 +1,44 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@variants active {
+  .bg-gradient-button {
+    position: relative;
+    overflow: hidden;
+    background-image: -webkit-gradient(
+      linear,
+      0% 0%,
+      0% 100%,
+      from(var(--gradient-to-color)),
+      to(var(--gradient-from-color))
+    );
+  }
+
+  .reflect-33::before {
+    background-color: rgba(255, 255, 255, 0.33);
+  }
+  .reflect-50::before {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  .reflect-66::before {
+    background-color: rgba(255, 255, 255, 0.66);
+  }
+}
+
+.reflect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: calc(50% + 10px);
+  left: 0;
+  right: 0;
+  margin: -10px auto 0 auto;
+}
+
+.reflect-round::before {
+  border-radius: 7px;
+  margin-top: -14px;
+  width: 95%;
+}
