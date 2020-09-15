@@ -42,6 +42,7 @@ export default {
   plugins: [
     {
       src: '~/plugins/prism',
+      mode: 'client',
     },
   ],
   /*
