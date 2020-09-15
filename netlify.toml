@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/"
+  to = "/aqua"
+  status = 302
