@@ -30,7 +30,7 @@
         <nuxt-content class="prose prose-xl" :document="page" />
       </div>
     </section>
-    <Footer />
+    <Foot />
   </div>
 </template>
 
@@ -38,11 +38,11 @@
 import 'assets/css/aqua.css'
 import 'prism-themes/themes/prism-vs.css'
 import Example from '@/components/example'
-import Footer from '@/components/footer'
+import Foot from '@/components/Foot'
 export default {
   components: {
     Example, // eslint-disable-line
-    Footer,
+    Foot,
   },
   async asyncData({ $content }) {
     const page = await $content('aqua').fetch()
